@@ -52,7 +52,7 @@ contract HelloWorld {
 <br>
 
 
-**Network used:** ETH Sepolia testnet
+**Network used:** ETH Sepolia testnet<br>
 ***Deployment transaction*:** https://sepolia.etherscan.io/address/0x7e1082b5c833cd56535fcbb95ae1c5d9c3f7a3c3
 
 ### 1.  Interacting with HelloWorld.sol `setText()` method without being the Owner
