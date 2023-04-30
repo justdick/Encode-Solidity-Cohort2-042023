@@ -5,7 +5,7 @@
 | --------- | -----------|
 | Simeon Udoh | Simeon#8769 |
 |Stephen| |
-|Antonio||
+| Antonio | Hydra#6138 |
 |Justice||
 
 
@@ -32,6 +32,15 @@ However, we can cancel the transaction or force send it using the “Send Transa
 | Address Interacting with the contract |  0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543 |
 | Transaction cost | 24451 gas |
 | Status | ❌ False Transaction mined but execution failed (failed tx). | 
+
+####Transfering ownership: 
+| Param | Data
+| ---------------------- | ---------------|
+| Old Owner address: | 0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
+| New Owner address: | 0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543 |
+| Transaction Hash  |  0xf9038d881ca566893772a934bd9d6f2925b47a0e9d7fc6af7ca2a030aa0f2dad |
+| Address Interacting with the contract |  0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
+| Status | Successful ✅ |
 
 ### After being transferred the owner permissions and interacting with the HelloWorld.sol `setText()`  method. 
 
