@@ -6,7 +6,7 @@
 | Simeon Udoh | Simeon#8769 |
 |Stephen| |
 | Antonio | Hydra#6138 |
-|Justice||
+| Dickson | justice#1900 |
 
 ##### Weekend Project One Objectives:
 
