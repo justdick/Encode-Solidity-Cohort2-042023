@@ -8,8 +8,51 @@
 | Antonio | Hydra#6138 |
 |Justice||
 
+##### Weekend Project One Objectives:
+
+- Interact with “HelloWorld.sol” within your group to change message strings and change owners
+- Write a report with each function execution and the transaction hash, if successful, or the revert reason, if failed
+
+<br>
+
+##### Code
+``` solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+
+contract HelloWorld {
+    string private text;
+    address public owner;
+
+    constructor() {
+        text = "Hello World";
+        owner = msg.sender;
+    }
+
+    function helloWorld() public view returns (string memory) {
+        return text;
+    }
+
+    function setText(string calldata newText) public onlyOwner {
+        text = newText;
+    }
+
+    function transferOwnership(address newOwner) public onlyOwner {
+        owner = newOwner;
+    }
+
+    modifier onlyOwner()
+    {
+        require (msg.sender == owner, "Caller is not the owner");
+        _;
+    }
+}
+```
+
+<br>
+##### Contract deployment:
 *Network used*: **ETH Sepolia testnet**
-*Contract deployed here*: https://sepolia.etherscan.io/address/0x7e1082b5c833cd56535fcbb95ae1c5d9c3f7a3c3
+*Deployment transaction*: https://sepolia.etherscan.io/address/0x7e1082b5c833cd56535fcbb95ae1c5d9c3f7a3c3
 
 ### 1.  Interacting with HelloWorld.sol `setText()` method without being the Owner
 
