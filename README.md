@@ -50,7 +50,8 @@ contract HelloWorld {
 ```
 
 <br>
-##### Contract deployment:
+#####Contract deployment:
+
 *Network used*: **ETH Sepolia testnet**
 *Deployment transaction*: https://sepolia.etherscan.io/address/0x7e1082b5c833cd56535fcbb95ae1c5d9c3f7a3c3
 
