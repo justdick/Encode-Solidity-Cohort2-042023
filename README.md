@@ -8,23 +8,25 @@
 | Antonio | Hydra#6138 |
 |Justice||
 
+*Contract Deployed here*: https://sepolia.etherscan.io/address/0x7e1082b5c833cd56535fcbb95ae1c5d9c3f7a3c3
 
-### Interacting with HelloWorld.sol `setText()` method without being the Owner: 
+### 1.  Interacting with HelloWorld.sol `setText()` method without being the Owner
 
-Current Owner: 
-0x462F13C8c00FfbBE25BD89687546Edb4eBB54462
+After the deployment of the `HelloWorld.sol` contract, we tried to interact with the contract's `setText()` method. 
 
-The current address used in  interacting with the contract: 0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543
+| Tag | Owner addresss |
+| ---- |  ------------- |
+| Current Owner | 0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
+| Non-Owner | 0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543 |
 
-When interacting with the contract without being an owner, we get the gas estimation failed error.
+##### Notes
+>When interacting with the contract's `setText()` without being an owner, we get the *gas estimation failed error/warning.*
+>
+>However, we can cancel the transaction or force send it using the “**Send Transaction**” button in the above screenshot. If we do force the transaction and confirm it, The transaction fails. 
 
 
 
-However, we can cancel the transaction or force send it using the “Send Transaction” button in the above screenshot. If we do force the transaction and confirm it, The transaction fails. 
-
-
-
-####Transaction Details: 
+##### Transaction Details: 
 | Param | Data
 | ---------------------- | ---------------|
 | Current Owner address: | 0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
@@ -33,7 +35,12 @@ However, we can cancel the transaction or force send it using the “Send Transa
 | Transaction cost | 24451 gas |
 | Status | ❌ False Transaction mined but execution failed (failed tx). | 
 
-####Transfering ownership: 
+<br>
+
+###  Transfering ownership
+
+Moving on, we transferred ownership of the contract using the `transferOwnership()` and the details of the transactions are presented below: 
+
 | Param | Data
 | ---------------------- | ---------------|
 | Old Owner address: | 0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
@@ -41,11 +48,15 @@ However, we can cancel the transaction or force send it using the “Send Transa
 | Transaction Hash  |  0xf9038d881ca566893772a934bd9d6f2925b47a0e9d7fc6af7ca2a030aa0f2dad |
 | Address Interacting with the contract |  0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
 | Status | Successful ✅ |
+ 
+<br>
 
-### After being transferred the owner permissions and interacting with the HelloWorld.sol `setText()`  method. 
+### After being transferred the owner access control and interacting with the HelloWorld.sol `setText()`  method. 
+
+Now with the `Owner` priviledges after the performing [Transfer Ownership](#transfering-ownership) operation, we interacted with the contract's `setText()` method again and voila, *it worked this time*.
 
 
-####Transaction Details: 
+##### Transaction Details: 
 | Param | Data
 | ---------------------- | ---------------|
 | Current Owner address: | 0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543 |
