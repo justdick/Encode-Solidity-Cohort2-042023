@@ -14,7 +14,7 @@
 
 After the deployment of the `HelloWorld.sol` contract, we tried to interact with the contract's `setText()` method. 
 
-| Tag | Owner addresss |
+| Tag |  Addresss |
 | ---- |  ------------- |
 | Current Owner | 0x462F13C8c00FfbBE25BD89687546Edb4eBB54462 |
 | Non-Owner | 0x91F858aB36531C0Fb4EEC0B2A8BB5D3DfF99F543 |
@@ -37,7 +37,7 @@ After the deployment of the `HelloWorld.sol` contract, we tried to interact with
 
 <br>
 
-###  Transfering ownership
+### 2.  Transfering ownership
 
 Moving on, we transferred ownership of the contract using the `transferOwnership()` and the details of the transactions are presented below: 
 
@@ -51,9 +51,9 @@ Moving on, we transferred ownership of the contract using the `transferOwnership
  
 <br>
 
-### After being transferred the owner access control and interacting with the HelloWorld.sol `setText()`  method. 
+### 3. After being transferred the owner access control and interacting with the HelloWorld.sol `setText()`  method. 
 
-Now with the `Owner` priviledges after the performing [Transfer Ownership](#transfering-ownership) operation, we interacted with the contract's `setText()` method again and voila, *it worked this time*.
+Now with the `Owner` priviledges after the performing [Transfer Ownership](#2-transfering-ownership) operation, we interacted with the contract's `setText()` method again and voila, *it worked this time*.
 
 
 ##### Transaction Details: 
