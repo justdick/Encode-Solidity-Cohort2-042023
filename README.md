@@ -80,7 +80,8 @@ After the deployment of the `HelloWorld.sol` contract, we tried to interact with
 | Transaction cost | 24451 gas |
 | Status | ❌ False Transaction mined but execution failed (failed tx). | 
 
-<br>
+
+
 
 ### 2.  Transfering ownership
 
