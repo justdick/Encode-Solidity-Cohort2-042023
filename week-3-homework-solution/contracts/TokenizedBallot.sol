@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.0 <0.9.0;
 
-interface IMyVoteToken {
-    function getPastVote(address, uint256) external view returns (uint256);
+interface IMyERC20Votes {
+    function getPastVotes(address, uint256) external view returns (uint256);
 }
 contract Ballot {
     struct Proposal {
@@ -11,27 +11,27 @@ contract Ballot {
     }
 
     Proposal[] public proposals;
-    IMyVoteToken public tokenContract;
+    IMyERC20Votes public tokenContract;
     uint256 public targetBlockNumber;
 
     mapping(address => uint256) public votingPowerSpent;
 
     constructor(bytes32[] memory proposalNames, address _tokenContract, uint256 _targetBlockNumber) {
-        tokenContract = IMyVoteToken(_tokenContract);
+        tokenContract = IMyERC20Votes(_tokenContract);
         targetBlockNumber = _targetBlockNumber;
         for (uint i = 0; i < proposalNames.length; i++) {
             proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
         }
     }
 
-    function vote(uint proposal, uint256 amount) external {
-        require(votingPower(msg.sender) >= amount, "You cant vote more that allowed");
+    function vote(uint proposal, uint256 amount, uint256 _blockNumber) public {
+        require(votingPower(msg.sender, _blockNumber) >= amount, "You cant vote more that allowed");
         votingPowerSpent[msg.sender] += amount;
         proposals[proposal].voteCount += amount;
     }
 
-    function votingPower(address account) public view returns (uint256)  {
-        return tokenContract.getPastVote(account, targetBlockNumber) - votingPowerSpent[account];
+    function votingPower(address _account, uint256 _blockNumber) public view returns (uint256)  {
+        return tokenContract.getPastVotes(_account, _blockNumber) - votingPowerSpent[_account];
     }
 
     function winningProposal() public view returns (uint winningProposal_) {
@@ -42,6 +42,7 @@ contract Ballot {
                 winningProposal_ = p;
             }
         }
+
     }
 
     function winnerName() external view returns (bytes32 winnerName_) {

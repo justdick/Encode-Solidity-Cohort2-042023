@@ -1,10 +1,25 @@
 import { utils } from 'ethers';
 import { ethers } from "hardhat";
 import { Ballot__factory, MyERC20Votes__factory } from "../typechain-types";
+import * as dotenv from "dotenv";
+dotenv.config();
+
 
 const MINT_VALUE = ethers.utils.parseUnits("100")
 
 async function main() {
+    // console.log(process.env.PRIVATE_KEY)
+    // const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "");
+    // const provider = new ethers.providers.JsonRpcProvider(
+    //     process.env.ALCHEMY_API_URL
+    // );
+
+    // const signer = wallet.connect(provider);
+
+    // const balance = await signer.getBalance();
+    // console.log(`Balance is: ${ethers.utils.formatUnits(balance)} ETH`);
+
+
     const [deployer, acct1, acct2] = await ethers.getSigners();
     const contractFactory = new MyERC20Votes__factory(deployer);
     const contract = await contractFactory.deploy()
@@ -68,22 +83,25 @@ async function main() {
     `)
 
 
-
+    //deploy Ballot contract
+    let proposals = process.argv.slice(2)
+    const proposalNames = proposals.map(ethers.utils.formatBytes32String)
     
-    // let proposalNames: any;
+    const BallotFactory = new Ballot__factory(deployer)
+    const BallotContract = await BallotFactory.deploy(
+        proposalNames, 
+        contract.address, 
+        deployTxnReceipt.blockNumber
+    );
 
-    // function stringToBytes32(str: string): string {
-    //     proposalNames.push(ethers.utils.formatBytes32String(str))
-    //     return ethers.utils.formatBytes32String(str);
-    // }
+    const BallotContractTxReceipt = await BallotContract.deployTransaction.wait()
+    
+    const voteTx = await BallotContract.connect(acct1).vote(1, 10, BallotContractTxReceipt.blockNumber - 1) //remember to get last block propoerly
 
-    // const BallotFactory = new Ballot__factory(deployer)
-    // const BallotContract = await BallotFactory.deploy(proposalNames, contract.address, deployTxnReceipt.blockNumber);
-    // const BallotContractTx = await BallotContract.deployTransaction.wait()
+    console.log(`Quering Result ............... \n`)
+    const winner = await BallotContract.winnerName()
+    console.log(`Winning proposal is => ${winner}`)
 
-    // const voteTx = await BallotContract.connect(acct1).vote(2, 10)
-
-    // console.log(voteTx)
 }   
 
 main().catch((err) => {
